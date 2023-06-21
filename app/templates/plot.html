@@ -242,7 +242,7 @@
               }).then((message) => alert(message));
             }
             if(data1[3] < control[1]) {
-              console.log(`${data1[3]} is greater than ${control[1]}`);
+              console.log(`${data1[3]} is less than ${control[1]}`);
               // alert( `Light Intensity (${data1[3]}) is low, please adjust the light control (${control[1]}).`)
               Email.send({
                 Host: "smtp.elasticemail.com",
@@ -251,11 +251,11 @@
                 To: "iriabe.osahon@stu.cu.edu.ng",
                 From: "o.iriabe@gmail.com",
                 Subject: "Light Intensity is too low",
-                Body: `Light Intensity (${data1[3]}) is low, please adjust the light control (${control[1]}).`,
+                Body: `Light Intensity (${data1[3]}) is really low, please adjust the light control (${control[1]}).`,
               }).then((message) => alert(message));
           }
           if(data1[4] < control[2]) {
-              console.log(`${data1[4]} is greater than ${control[2]}`);
+              console.log(`${data1[4]} is less than ${control[2]}`);
               Email.send({
                 Host: "smtp.elasticemail.com",
                 Username: "o.iriabe@gmail.com",
