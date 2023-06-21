@@ -223,13 +223,14 @@
       .then((data1) => {
         fetch("/get_control_input")
           .then((response) => response.text())
-          .then((data2) => {
+          .then((control) => {
             data1 = data1.split(', ');
-            data2 = data2.split(', ');
+            control = control.split(', ');
             console.log("Data 1: ", data1[1]);
-            console.log("Control 1: ", data2[0]);
-            if (data1[1] > data2[0]) {
-              console.log(`${data1[1]} is greater than ${data2[0]}`);
+            console.log("Control 1: ", control[0]);
+            if (data1[1] > control[0]) {
+              console.log(`${data1[1]} is greater than ${control[0]}`);
+              // alert(`Temperature (${data1[1]}) is greater than Fan Speed (${control[0]}) and system is getting hot`)
               Email.send({
                 Host: "smtp.elasticemail.com",
                 Username: "o.iriabe@gmail.com",
@@ -237,31 +238,32 @@
                 To: "iriabe.osahon@stu.cu.edu.ng",
                 From: "o.iriabe@gmail.com",
                 Subject: "Temperature is too high",
-                Body: `Temperature (${data1[1]}) is greater than Fan Speed (${data2[0]}) and system is getting hot`,
+                Body: `Temperature (${data1[1]}) is greater than Fan Speed (${control[0]}) and system is getting hot`,
               }).then((message) => alert(message));
             }
-            if(data1[3] < data2[1]) {
-              console.log(`${data1[3]} is less than ${data2[1]}`);
+            if(data1[3] < control[1]) {
+              console.log(`${data1[3]} is greater than ${control[1]}`);
+              // alert( `Light Intensity (${data1[3]}) is low, please adjust the light control (${control[1]}).`)
               Email.send({
                 Host: "smtp.elasticemail.com",
                 Username: "o.iriabe@gmail.com",
-                // Password: "BEF56DB61C3538A51CE078DD108AEE04736D",
+                Password: "BEF56DB61C3538A51CE078DD108AEE04736D",
                 To: "iriabe.osahon@stu.cu.edu.ng",
                 From: "o.iriabe@gmail.com",
                 Subject: "Light Intensity is too low",
-                Body: `Light Intensity (${data1[3]}) is low, please adjust the light control (${data2[1]}).`,
+                Body: `Light Intensity (${data1[3]}) is low, please adjust the light control (${control[1]}).`,
               }).then((message) => alert(message));
           }
-          if(data1[4] < data2[2]) {
-              console.log(`${data1[4]} is less than ${data2[2]}`);
+          if(data1[4] < control[2]) {
+              console.log(`${data1[4]} is greater than ${control[2]}`);
               Email.send({
                 Host: "smtp.elasticemail.com",
                 Username: "o.iriabe@gmail.com",
-                // Password: "BEF56DB61C3538A51CE078DD108AEE04736D",
+                Password: "BEF56DB61C3538A51CE078DD108AEE04736D",
                 To: "iriabe.osahon@stu.cu.edu.ng",
                 From: "o.iriabe@gmail.com",
                 Subject: "Soil Moisture is too low",
-                Body: `Soil Moisture (${data1[4]}) is really low, pump control is set at ${data2[2]} and is too low.`,
+                Body: `Soil Moisture (${data1[4]}) is really low, pump control is set at ${control[2]} and is too low.`,
               }).then((message) => alert(message));
           }
           });
